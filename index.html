@@ -1993,6 +1993,12 @@ loadPublicIP();
 startTrafficDisplay();
 
 setDatabaseCardsDisabled(false);
+  window.addEventListener("load", () => {
+  setTimeout(() => {
+    document.getElementById("welcomeModal")?.classList.add("hidden");
+  }, 3000);
+});
 </script>
+
 </body>
 </html>
