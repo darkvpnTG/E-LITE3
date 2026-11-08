@@ -1529,23 +1529,7 @@ async function finishTelegramLogin(code) {
     authToken = null;
   }
 }
-
-    $("welcomeModal").classList.add("hidden");
-
-    $("status").textContent =
-      "ورود موفق بود | سهمیه باقی‌مانده: " +
-      currentQuota.remaining + " از ۱۰";
-
-    const cleanUrl = new URL(location.href);
-    cleanUrl.searchParams.delete("auth_code");
-    history.replaceState({}, "", cleanUrl);
-
-  } catch (error) {
-    $("loginStatus").textContent = error.message;
-    authToken = null;
-  }
-}
-
+  
 $("telegramLoginBtn").addEventListener("click", () => {
   location.href = AUTH_API + "/auth/login";
 });
