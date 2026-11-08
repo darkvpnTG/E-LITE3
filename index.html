@@ -1469,7 +1469,7 @@ let authToken = null;
 let currentUser = null;
 let currentQuota = null;
 
-async function finishTelegramLogin(code) {
+  async function finishTelegramLogin(code) {
   $("loginStatus").textContent = "در حال بررسی حساب تلگرام...";
 
   try {
@@ -1501,8 +1501,7 @@ async function finishTelegramLogin(code) {
     currentQuota = me.quota;
 
     if (currentQuota.locked) {
-      $("loginStatus").textContent =
-        "حساب شما موقتاً محدود شده است.";
+      $("loginStatus").textContent = "حساب شما موقتاً محدود شده است.";
       authToken = null;
       return;
     }
@@ -1521,11 +1520,17 @@ async function finishTelegramLogin(code) {
       "🟢 وضعیت حساب: فعال";
 
     const cleanUrl = new URL(location.href);
-    
-$("telegramLoginBtn").addEventListener("click", () => {
-  location.href = AUTH_API + "/auth/login";
-});
+    cleanUrl.searchParams.delete("auth_code");
+    history.replaceState({}, "", cleanUrl);
 
+  } catch (error) {
+    $("loginStatus").textContent = error.message || "خطا در ورود";
+    authToken = null;
+    currentUser = null;
+    currentQuota = null;
+  }
+  }
+  
 const loginParams = new URLSearchParams(location.search);
 const returnedCode = loginParams.get("auth_code");
 
