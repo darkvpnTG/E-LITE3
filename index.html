@@ -1888,9 +1888,9 @@ $("melliToggle").addEventListener("change", () => {
    GENERAL CONTROLS
 ========================= */
 
-$("understoodBtn").addEventListener("click", () => {
+setTimeout(() => {
   $("welcomeModal").classList.add("hidden");
-});
+}, 3000);
 
 $("themeBtn").addEventListener("click", () => {
   const day = document.body.classList.toggle("day");
