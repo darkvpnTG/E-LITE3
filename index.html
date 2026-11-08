@@ -2024,14 +2024,21 @@ try {
     return;
   }
 
-  currentQuota.used = quotaData.used;
-  currentQuota.remaining = quotaData.remaining;
+currentQuota.used = quotaData.used;
+currentQuota.remaining = quotaData.remaining;
 
-  if (quotaData.warning) alert(quotaData.warning);
+const username = currentUser?.username
+  ? "@" + currentUser.username.replace(/^@/, "")
+  : (currentUser?.first_name || "Telegram User");
 
-} catch (error) {
-  setStatus("ارتباط با سرور برقرار نشد.", true);
-  return;
+$("status").textContent =
+  "👤 کاربر: " + username + "\n" +
+  "📊 میزان استفاده: " + currentQuota.used + " از ۱۰\n" +
+  "⚡ سهمیه باقی‌مانده: " + currentQuota.remaining + " از ۱۰\n" +
+  "🟢 وضعیت حساب: فعال";
+
+if (quotaData.warning) {
+  alert(quotaData.warning);
 }
   
   clearTimeout(endpointTimer);
