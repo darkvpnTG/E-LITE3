@@ -911,16 +911,27 @@ input:focus,select:focus{
 <div class="wrap">
 
 <!-- WELCOME MODAL -->
+<!-- TELEGRAM LOGIN MODAL -->
 <div class="modal" id="welcomeModal" role="dialog" aria-modal="true">
   <div class="modal-card">
-    <h2 class="modal-title">هشدار</h2>
-    <p class="modal-message">این پنل کاملا رایگان است. 📡</p>
-    <div>کانال رسمی</div>
-    <a class="modal-channel" href="https://t.me/darkvpnTG" target="_blank" rel="noopener">https://t.me/darkvpnTG</a>
-    <button class="modal-button" id="understoodBtn" type="button">فهمیدم</button>
+    <h2 class="modal-title">ورود به DARK VPN</h2>
+    <p class="modal-message">
+      برای استفاده از پنل، ابتدا با حساب تلگرام خود وارد شوید.
+    </p>
+
+    <a class="modal-channel" href="https://t.me/darkvpnTG"
+       target="_blank" rel="noopener">
+      کانال رسمی DARK VPN
+    </a>
+
+    <button class="modal-button" id="telegramLoginBtn" type="button">
+      ورود با تلگرام
+    </button>
+
+    <p id="loginStatus" class="modal-message"></p>
   </div>
 </div>
-
+  
 <!-- DATABASE CONNECTION MODAL -->
 <div class="apn-modal hidden" id="databaseModal" role="dialog" aria-modal="true">
   <div class="apn-modal-card">
@@ -1452,7 +1463,77 @@ const LOCATION_LIST_URL =
   "https://raw.githubusercontent.com/darkvpnTG/Vless-RTL/refs/heads/main/ip.txt";
 
 const $ = id => document.getElementById(id);
+const AUTH_API = "https://dark-auth.temserverofficial.workers.dev";
 
+let authToken = null;
+let currentUser = null;
+let currentQuota = null;
+
+async function finishTelegramLogin(code) {
+  $("loginStatus").textContent = "در حال بررسی حساب تلگرام...";
+
+  try {
+    const response = await fetch(AUTH_API + "/api/auth/exchange", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ code })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok || !data.token) {
+      throw new Error(data.error || "ورود ناموفق بود");
+    }
+
+    authToken = data.token;
+
+    const meResponse = await fetch(AUTH_API + "/api/me", {
+      headers: { Authorization: "Bearer " + authToken }
+    });
+
+    const me = await meResponse.json();
+
+    if (!meResponse.ok) {
+      throw new Error(me.error || "دریافت اطلاعات حساب ناموفق بود");
+    }
+
+    currentUser = me.user;
+    currentQuota = me.quota;
+
+    if (currentQuota.locked) {
+      $("loginStatus").textContent =
+        "حساب شما موقتاً محدود شده است.";
+      authToken = null;
+      return;
+    }
+
+    $("welcomeModal").classList.add("hidden");
+
+    $("status").textContent =
+      "ورود موفق بود | سهمیه باقی‌مانده: " +
+      currentQuota.remaining + " از ۱۰";
+
+    const cleanUrl = new URL(location.href);
+    cleanUrl.searchParams.delete("auth_code");
+    history.replaceState({}, "", cleanUrl);
+
+  } catch (error) {
+    $("loginStatus").textContent = error.message;
+    authToken = null;
+  }
+}
+
+$("telegramLoginBtn").addEventListener("click", () => {
+  location.href = AUTH_API + "/auth/login";
+});
+
+const loginParams = new URLSearchParams(location.search);
+const returnedCode = loginParams.get("auth_code");
+
+if (returnedCode) {
+  finishTelegramLogin(returnedCode);
+}
+  
 let availableCountries = new Set();
 let countrySubscriptions = new Map();
 let selectedCountry = "";
@@ -1895,12 +1976,41 @@ function closeCountryMenu() {
    ENDPOINT SCAN AND SUBSCRIPTION COPY
 ========================= */
 
-function startEndpointScan() {
+async function startEndpointScan() {
   if (!selectedCountry || !countrySubscriptions.has(selectedCountry)) {
     setStatus("ابتدا یک لوکیشن معتبر انتخاب کنید.", true);
     return;
   }
+if (!authToken) {
+  $("welcomeModal").classList.remove("hidden");
+  return;
+}
 
+try {
+  const quotaResponse = await fetch(AUTH_API + "/api/use", {
+    method: "POST",
+    headers: {
+      "Authorization": "Bearer " + authToken
+    }
+  });
+
+  const quotaData = await quotaResponse.json();
+
+  if (!quotaResponse.ok) {
+    setStatus("سهمیه روزانه شما تمام شده است.", true);
+    return;
+  }
+
+  currentQuota.used = quotaData.used;
+  currentQuota.remaining = quotaData.remaining;
+
+  if (quotaData.warning) alert(quotaData.warning);
+
+} catch (error) {
+  setStatus("ارتباط با سرور برقرار نشد.", true);
+  return;
+}
+  
   clearTimeout(endpointTimer);
   $("scanEndpointBtn").disabled = true;
   $("endpointModalIcon").className = "apn-loader";
