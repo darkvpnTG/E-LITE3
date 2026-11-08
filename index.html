@@ -1507,6 +1507,29 @@ async function finishTelegramLogin(code) {
       return;
     }
 
+    const username = currentUser.username
+      ? "@" + currentUser.username.replace(/^@/, "")
+      : (currentUser.first_name || "Telegram User");
+
+    $("welcomeModal").classList.add("hidden");
+
+    $("status").textContent =
+      "ورود موفق بود ✅\n" +
+      "👤 کاربر: " + username + "\n" +
+      "📊 میزان استفاده: " + currentQuota.used + " از ۱۰\n" +
+      "⚡ سهمیه باقی‌مانده: " + currentQuota.remaining + " از ۱۰\n" +
+      "🟢 وضعیت حساب: فعال";
+
+    const cleanUrl = new URL(location.href);
+    cleanUrl.searchParams.delete("auth_code");
+    history.replaceState({}, "", cleanUrl);
+
+  } catch (error) {
+    $("loginStatus").textContent = error.message;
+    authToken = null;
+  }
+}
+
     $("welcomeModal").classList.add("hidden");
 
     $("status").textContent =
