@@ -12,12 +12,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap');
 
 :root{
-  --glass:rgba(13,22,38,.76);
-  --line:rgba(211,228,255,.16);
-  --text:#f7f9ff;
-  --muted:#c6d0df;
-  --accent:#75d9ff;
-  --accent2:#a69aff
+  --glass:rgba(177,255,218,.13);
+  --line:rgba(174,255,213,.30);
+  --text:#f4fff9;
+  --muted:#c8e8d7;
+  --accent:#9af0bd;
+  --accent2:#b7a7ff
 }
 
 *{box-sizing:border-box}
@@ -28,21 +28,24 @@ body{
   min-height:100vh;
   color:var(--text);
   font-family:Vazirmatn,system-ui,sans-serif;
-  background:#0c1422
+  background:#11152d
 }
 
 .bg{
   position:fixed;
   inset:0;
   z-index:-3;
-  background:url('./background.png') center/cover no-repeat
+  background:
+    radial-gradient(ellipse at 15% 18%, rgba(111,145,255,.34), transparent 48%),
+    radial-gradient(ellipse at 88% 78%, rgba(166,112,255,.30), transparent 48%),
+    linear-gradient(135deg, #111a3a 0%, #25204b 48%, #171a3b 100%)
 }
 
 .bg:after{
   content:"";
   position:absolute;
   inset:0;
-  background:linear-gradient(180deg,rgba(5,10,20,.28),rgba(5,10,20,.72) 55%,rgba(5,10,20,.9))
+  background:linear-gradient(180deg,rgba(10,15,38,.12),rgba(13,17,43,.28) 55%,rgba(10,13,34,.42))
 }
 
 body.day .bg{filter:brightness(1.15) saturate(1.05)}
@@ -53,7 +56,7 @@ body.night .bg{filter:brightness(.48) saturate(.8)}
   z-index:-1;
   inset:0;
   pointer-events:none;
-  background:radial-gradient(circle at 85% 10%,#56d6ff24,transparent 30%),radial-gradient(circle at 10% 85%,#8b7cff22,transparent 32%)
+  background:radial-gradient(circle at 85% 10%,#a9ffd52b,transparent 30%),radial-gradient(circle at 10% 85%,#9b8bff2c,transparent 32%)
 }
 
 .wrap{
@@ -125,12 +128,12 @@ body.night .bg{filter:brightness(.48) saturate(.8)}
 
 .panel{
   position:relative;
-  background:linear-gradient(145deg,rgba(24,38,59,.74),rgba(8,15,28,.70));
+  background:linear-gradient(145deg,rgba(190,255,220,.17),rgba(156,211,255,.09));
   border:1px solid var(--line);
   border-radius:24px;
   padding:20px;
-  backdrop-filter:blur(7px);
-  -webkit-backdrop-filter:blur(7px);
+  backdrop-filter:blur(18px) saturate(145%);
+  -webkit-backdrop-filter:blur(18px) saturate(145%);
   box-shadow:0 10px 28px rgba(0,0,0,.24),inset 0 1px 0 rgba(255,255,255,.05)
 }
 
@@ -161,7 +164,7 @@ label{font-size:12px;color:#d6e0ed;font-weight:700}
 input,select{
   width:100%;
   border:1px solid #ffffff24;
-  background:rgba(9,19,34,.72);
+  background:rgba(176,238,204,.12);
   color:#fff;
   border-radius:13px;
   padding:13px 12px;
@@ -219,7 +222,7 @@ input:focus,select:focus{
   padding:16px;
   border:1px solid #56d6ff55;
   border-radius:16px;
-  background:rgba(7,19,34,.9);
+  background:rgba(160,232,190,.13);
   overflow:hidden
 }
 
@@ -233,7 +236,7 @@ input:focus,select:focus{
   word-break:break-all;
   padding:13px;
   border-radius:10px;
-  background:#020813;
+  background:rgba(8,20,35,.65);
   color:#9deaff;
   font-size:12px;
   line-height:1.8;
@@ -275,7 +278,7 @@ input:focus,select:focus{
 .database-picker{
   border:1px solid rgba(117,217,255,.24);
   border-radius:17px;
-  background:rgba(5,15,28,.55);
+  background:rgba(177,255,218,.10);
   overflow:hidden
 }
 
@@ -335,7 +338,7 @@ input:focus,select:focus{
   padding:9px 12px;
   border:1px solid rgba(255,255,255,.15);
   border-radius:12px;
-  background:rgba(8,20,36,.72);
+  background:rgba(170,242,202,.12);
   color:white;
   font:inherit;
   cursor:pointer;
@@ -423,7 +426,7 @@ input:focus,select:focus{
   padding:13px 15px;
   border:1px solid #75d9ff45;
   border-radius:16px;
-  background:linear-gradient(135deg,#102a40d9,#10172bd9);
+  background:linear-gradient(135deg,rgba(174,255,211,.17),rgba(171,165,255,.13));
   box-shadow:0 8px 25px #0003;
   overflow:hidden;
   direction:rtl;
@@ -484,7 +487,7 @@ input:focus,select:focus{
   padding:13px 15px;
   border:1px solid #75d9ff45;
   border-radius:16px;
-  background:linear-gradient(135deg,#102a40d9,#10172bd9);
+  background:linear-gradient(135deg,rgba(174,255,211,.17),rgba(171,165,255,.13));
   box-shadow:0 8px 25px #0003;
   text-align:left !important;
   direction:ltr !important;
@@ -596,7 +599,7 @@ input:focus,select:focus{
   padding:6px;
   border:1px solid rgba(211,228,255,.2);
   border-radius:16px;
-  background:#0b1728;
+  background:rgba(18,27,57,.96);
   box-shadow:0 18px 48px rgba(0,0,0,.48)
 }
 
@@ -650,7 +653,7 @@ input:focus,select:focus{
   padding:15px;
   border:1px solid rgba(117,217,255,.32);
   border-radius:17px;
-  background:linear-gradient(135deg,rgba(16,42,64,.88),rgba(16,23,43,.9));
+  background:linear-gradient(135deg,rgba(174,255,211,.18),rgba(171,165,255,.14));
   box-shadow:0 8px 25px rgba(0,0,0,.2)
 }
 
@@ -741,7 +744,7 @@ input:focus,select:focus{
 .collapsible{
   border:1px solid #ffffff24;
   border-radius:16px;
-  background:#08152399;
+  background:rgba(176,255,213,.10);
   overflow:hidden
 }
 
@@ -829,7 +832,7 @@ input:focus,select:focus{
   padding:27px 22px;
   border-radius:23px;
   border:1px solid #56d6ff66;
-  background:linear-gradient(145deg,#14253b,#091321);
+  background:linear-gradient(145deg,rgba(180,255,215,.22),rgba(115,130,210,.22));
   box-shadow:0 20px 70px #000b;
   text-align:center
 }
@@ -901,6 +904,40 @@ input:focus,select:focus{
     transition-duration:.01ms!important
   }
 }
+
+/* Pale green glass and Linux-style card dots */
+.panel{
+  overflow:hidden;
+  background:linear-gradient(145deg,rgba(186,255,216,.17),rgba(157,177,255,.10));
+  border-color:rgba(177,255,211,.32);
+  box-shadow:0 14px 38px rgba(4,9,30,.22),inset 0 1px 0 rgba(255,255,255,.13);
+}
+.panel::before{
+  content:"";
+  position:absolute;top:13px;left:15px;width:38px;height:10px;
+  background:
+    radial-gradient(circle at 5px 5px,#f5c84b 0 4px,transparent 4.5px),
+    radial-gradient(circle at 19px 5px,#43d17b 0 4px,transparent 4.5px),
+    radial-gradient(circle at 33px 5px,#f05a63 0 4px,transparent 4.5px);
+  opacity:.95;pointer-events:none;
+}
+.panel > .section-title{padding-left:48px}
+.welcome-card{position:relative;overflow:hidden}
+.welcome-countdown{
+  position:absolute;top:12px;left:14px;min-width:27px;height:27px;padding:2px 7px;
+  display:grid;place-items:center;border-radius:20px;
+  border:1px solid rgba(178,255,213,.42);background:rgba(178,255,213,.15);
+  color:#d9ffe8;font-size:12px;font-weight:900;font-variant-numeric:tabular-nums
+}
+.welcome-channel{
+  width:100%;min-height:48px;display:flex;align-items:center;justify-content:center;
+  margin:18px 0 8px;border:1px solid rgba(170,255,207,.42);border-radius:12px;
+  background:rgba(170,255,207,.13);color:#d8ffe7;text-decoration:none;
+  letter-spacing:.2px;backdrop-filter:blur(12px)
+}
+.welcome-channel:hover{background:rgba(170,255,207,.22)}
+.welcome-note{margin:8px 0 0;color:#c8e8d7;font-size:11px}
+
 </style>
 </head>
   
@@ -911,20 +948,15 @@ input:focus,select:focus{
 <div class="wrap">
 
 <!-- WELCOME MODAL -->
-<div class="modal" id="welcomeModal" role="dialog" aria-modal="true">
-  <div class="modal-card">
-    <h2 class="modal-title">خوش آمدید</h2>
-    <p class="modal-message">این پنل کاملاً رایگان است. 📡</p>
-
-    <a class="modal-channel"
-       href="https://t.me/darkvpnTG"
-       target="_blank"
-       rel="noopener">
-       کانال تلگرام
-    </a>
+<div class="modal" id="welcomeModal" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle">
+  <div class="modal-card welcome-card">
+    <span class="welcome-countdown" id="welcomeCountdown" aria-live="polite">۳</span>
+    <h2 class="modal-title" id="welcomeTitle">خوش اومدی 👋</h2>
+    <p class="modal-message">به پنل DARK VPN خوش اومدی</p>
+    <a class="modal-channel welcome-channel" href="https://t.me/darkvpnTG" target="_blank" rel="noopener">کانال تلگرام</a>
+    <p class="welcome-note">این پنجره تا <span id="welcomeSeconds">۳</span> ثانیه دیگر بسته می‌شود</p>
   </div>
 </div>
-
 <!-- DATABASE CONNECTION MODAL -->
 <div class="apn-modal hidden" id="databaseModal" role="dialog" aria-modal="true">
   <div class="apn-modal-card">
@@ -944,15 +976,6 @@ input:focus,select:focus{
     <p class="apn-modal-message" id="endpointModalMessage">لطفاً تا پایان فرایند منتظر بمانید.</p>
     <div id="endpointCount" class="endpoint-count" hidden></div>
     <button class="modal-button endpoint-copy-button" id="copySubscriptionBtn" type="button" hidden>کپی ساب</button>
-  </div>
-</div>
-
-<!-- APN MODAL -->
-<div class="apn-modal hidden" id="apnModal" role="dialog" aria-modal="true">
-  <div class="apn-modal-card">
-    <div id="apnModalIcon" class="apn-loader"></div>
-    <h3 class="apn-modal-title" id="apnModalTitle">در حال انجام تنظیمات</h3>
-    <p class="apn-modal-message" id="apnModalMessage">لطفاً شکیبا باشید.</p>
   </div>
 </div>
 
@@ -1301,9 +1324,6 @@ let selectedDatabase = "";
 
 let databaseTimer = null;
 let databaseCloseTimer = null;
-
-let apnTimer = null;
-let apnCloseTimer = null;
 
 const countryNames = {
   CA:"Canada", US:"United States", DE:"Germany", FR:"France",
@@ -1798,44 +1818,12 @@ $("scanEndpointBtn").addEventListener("click", startEndpointScan);
 $("copySubscriptionBtn").addEventListener("click", copySelectedSubscription);
 
 /* =========================
-   SAVE OPTIONS
+   APN MODAL
 ========================= */
 
-function readSavedChecks(containerId, storageKey) {
-  let saved = [];
-
-  try {
-    saved = JSON.parse(localStorage.getItem(storageKey) || "[]");
-
-    if (!Array.isArray(saved)) saved = [];
-  } catch (_) {}
-
-  document.querySelectorAll(
-    "#" + containerId + ' input[type="checkbox"]'
-  ).forEach(input => {
-    input.checked = saved.includes(input.value);
-  });
-}
-
-function saveChecks(containerId, storageKey, statusId, label) {
-  const selected = [
-    ...document.querySelectorAll(
-      "#" + containerId + ' input[type="checkbox"]:checked'
-    )
-  ].map(input => input.value);
-
-  try {
-    localStorage.setItem(storageKey, JSON.stringify(selected));
-
-    $(statusId).textContent = selected.length
-      ? selected.length + " مورد " + label + " ذخیره شد."
-      : "همه گزینه‌ها غیرفعال و ذخیره شدند.";
-
-  } catch (_) {
-    $(statusId).textContent =
-      "ذخیره‌سازی در مرورگر امکان‌پذیر نیست.";
-  }
-}
+/* =========================
+   SAVE OPTIONS
+========================= */
 
 function updateMelliStatus(save = true) {
   const enabled = $("melliToggle").checked;
@@ -1850,36 +1838,6 @@ function updateMelliStatus(save = true) {
     enabled ? "گزینه دارک ملی فعال شد." : "دارک ملی غیرفعال است.";
 }
 
-function initExtraOptions() {
-  readSavedChecks("sanctionList", "darkvpn_sanctions");
-  readSavedChecks("ghostList", "darkvpn_ghost");
-
-  try {
-    $("melliToggle").checked =
-      localStorage.getItem("darkvpn_melli") === "true";
-  } catch (_) {}
-
-  updateMelliStatus(false);
-}
-
-$("saveSanctionBtn").addEventListener("click", () => {
-  saveChecks(
-    "sanctionList",
-    "darkvpn_sanctions",
-    "sanctionStatus",
-    "تحریم‌شکن"
-  );
-});
-
-$("saveGhostBtn").addEventListener("click", () => {
-  saveChecks(
-    "ghostList",
-    "darkvpn_ghost",
-    "ghostStatus",
-    "حالت روح"
-  );
-});
-
 $("melliToggle").addEventListener("change", () => {
   updateMelliStatus(true);
 });
@@ -1888,17 +1846,17 @@ $("melliToggle").addEventListener("change", () => {
    GENERAL CONTROLS
 ========================= */
 
-setTimeout(() => {
-  $("welcomeModal").classList.add("hidden");
-}, 3000);
+let welcomeRemaining = 3;
+const welcomeCountdownTimer = setInterval(() => {
+  welcomeRemaining -= 1;
+  if ($("welcomeCountdown")) $("welcomeCountdown").textContent = String(welcomeRemaining);
+  if ($("welcomeSeconds")) $("welcomeSeconds").textContent = String(welcomeRemaining);
+  if (welcomeRemaining <= 0) {
+    clearInterval(welcomeCountdownTimer);
+    $("welcomeModal").classList.add("hidden");
+  }
+}, 1000);
 
-  window.addEventListener("load", () => {
-  setTimeout(() => {
-    const modal = document.getElementById("welcomeModal");
-    if (modal) modal.classList.add("hidden");
-  }, 3000);
-});
-  
 $("themeBtn").addEventListener("click", () => {
   const day = document.body.classList.toggle("day");
 
@@ -2000,15 +1958,6 @@ loadPublicIP();
 startTrafficDisplay();
 
 setDatabaseCardsDisabled(false);
-
-const welcomeModal = document.getElementById("welcomeModal");
-
-if (welcomeModal) {
-  setTimeout(() => {
-    welcomeModal.style.display = "none";
-  }, 3000);
-}
-
 </script>
 </body>
 </html>
