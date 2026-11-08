@@ -1892,6 +1892,13 @@ setTimeout(() => {
   $("welcomeModal").classList.add("hidden");
 }, 3000);
 
+  window.addEventListener("load", () => {
+  setTimeout(() => {
+    const modal = document.getElementById("welcomeModal");
+    if (modal) modal.classList.add("hidden");
+  }, 3000);
+});
+  
 $("themeBtn").addEventListener("click", () => {
   const day = document.body.classList.toggle("day");
 
