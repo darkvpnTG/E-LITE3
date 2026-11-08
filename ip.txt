@@ -1,3 +1,5 @@
+{ae} https://sky-pixel-295.gumepe3734.workers.dev/sync?sub=AE#@DarkVPNTG
+{al} https://sky-pixel-295.gumepe3734.workers.dev/sync?sub=AL#DarkVPNTG
 {at} https://sky-pixel-295.gumepe3734.workers.dev/sync?sub=AT#@DarkVPNTG
 {au} https://sky-pixel-295.gumepe3734.workers.dev/sync?sub=AU#@DarkVPNTG
 {be} https://sky-pixel-295.gumepe3734.workers.dev/sync?sub=BE#@DarkVPNTG
@@ -24,5 +26,6 @@
 {ro} https://sky-pixel-295.gumepe3734.workers.dev/sync?sub=RO#@DarkVPNTG
 {rs} https://sky-pixel-295.gumepe3734.workers.dev/sync?sub=RS#@DarkVPNTG
 {se} https://sky-pixel-295.gumepe3734.workers.dev/sync?sub=SE#@DarkVPNTG
+{tr} https://sky-pixel-295.gumepe3734.workers.dev/sync?sub=TR#DarkVPNTG
 {sg} https://sky-pixel-295.gumepe3734.workers.dev/sync?sub=SG#@DarkVPNTG
 {us} https://sky-pixel-295.gumepe3734.workers.dev/sync?sub=US#@DarkVPNTG
