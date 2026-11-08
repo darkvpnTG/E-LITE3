@@ -90,15 +90,6 @@ body.night .bg{filter:brightness(.48) saturate(.8)}
 }
 
 .brand small{color:var(--muted);font-size:11px}
-.music-toggle{
-  display:inline-flex;align-items:center;justify-content:center;
-  width:24px;height:24px;min-width:24px;margin-inline-start:2px;
-  padding:0;border:0;background:transparent;color:var(--text);
-  font-size:16px;line-height:1;cursor:pointer;
-  opacity:.9;transition:transform .18s ease,opacity .18s ease
-}
-.music-toggle:active{transform:scale(.88)}
-.music-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
 
 .theme{
   border:1px solid var(--line);
@@ -920,27 +911,16 @@ input:focus,select:focus{
 <div class="wrap">
 
 <!-- WELCOME MODAL -->
-<!-- TELEGRAM LOGIN MODAL -->
 <div class="modal" id="welcomeModal" role="dialog" aria-modal="true">
   <div class="modal-card">
-    <h2 class="modal-title">ورود به DARK VPN</h2>
-    <p class="modal-message">
-      برای استفاده از پنل، ابتدا با حساب تلگرام خود وارد شوید.
-    </p>
-
-    <a class="modal-channel" href="https://t.me/darkvpnTG"
-       target="_blank" rel="noopener">
-      کانال رسمی DARK VPN
-    </a>
-
-    <button class="modal-button" id="telegramLoginBtn" type="button">
-      ورود با تلگرام
-    </button>
-
-    <p id="loginStatus" class="modal-message"></p>
+    <h2 class="modal-title">هشدار</h2>
+    <p class="modal-message">این پنل کاملا رایگان است. 📡</p>
+    <div>کانال رسمی</div>
+    <a class="modal-channel" href="https://t.me/darkvpnTG" target="_blank" rel="noopener">https://t.me/darkvpnTG</a>
+    <button class="modal-button" id="understoodBtn" type="button">فهمیدم</button>
   </div>
 </div>
-  
+
 <!-- DATABASE CONNECTION MODAL -->
 <div class="apn-modal hidden" id="databaseModal" role="dialog" aria-modal="true">
   <div class="apn-modal-card">
@@ -981,8 +961,6 @@ input:focus,select:focus{
       <h1>𝐃𝐚𝐫𝐤ᵛᵖⁿ</h1>
       <small>Xray • EPN • E-LITE</small>
     </div>
-    <button class="music-toggle" id="musicToggle" type="button" aria-label="قطع صدا" aria-pressed="false" title="Mute / Unmute">🔊</button>
-    <audio id="backgroundMusic" src="./darkvpn-music.m4a" loop preload="auto"></audio>
   </div>
   <button class="theme" id="themeBtn" type="button">☀️ حالت روز</button>
 </header>
@@ -1001,7 +979,7 @@ input:focus,select:focus{
     </div>
   </div>
 
-  <h2>دریافت اشتراک VLESS</h2>
+  <h2>دریافت اشتراک Xray</h2>
   <p>انتخاب دیتابیس و لوکیشن برای دریافت لینک اشتراک</p>
 </section>
 
@@ -1042,7 +1020,7 @@ input:focus,select:focus{
         <path class="wave-glow" d="M0 22 C8 22 8 14 16 14 S24 29 32 29 S40 18 48 18 S56 25 64 25 S72 12 80 12 S88 28 96 28 S104 18 112 18 S116 22 120 22"/>
       </svg>
     </div>
-    <div class="traffic-footnote"></div></div>
+    <div class="traffic-footnote"></div>
   </div>
 
   <details class="database-picker" id="databasePicker">
@@ -1474,77 +1452,7 @@ const LOCATION_LIST_URL =
   "https://raw.githubusercontent.com/darkvpnTG/Vless-RTL/refs/heads/main/ip.txt";
 
 const $ = id => document.getElementById(id);
-const AUTH_API = "https://dark-auth.temserverofficial.workers.dev";
 
-let authToken = null;
-let currentUser = null;
-let currentQuota = null;
-
-async function finishTelegramLogin(code) {
-  $("loginStatus").textContent = "در حال بررسی حساب تلگرام...";
-
-  try {
-    const response = await fetch(AUTH_API + "/api/auth/exchange", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ code })
-    });
-
-    const data = await response.json();
-
-    if (!response.ok || !data.token) {
-      throw new Error(data.error || "ورود ناموفق بود");
-    }
-
-    authToken = data.token;
-
-    const meResponse = await fetch(AUTH_API + "/api/me", {
-      headers: { Authorization: "Bearer " + authToken }
-    });
-
-    const me = await meResponse.json();
-
-    if (!meResponse.ok) {
-      throw new Error(me.error || "دریافت اطلاعات حساب ناموفق بود");
-    }
-
-    currentUser = me.user;
-    currentQuota = me.quota;
-
-    if (currentQuota.locked) {
-      $("loginStatus").textContent =
-        "حساب شما موقتاً محدود شده است.";
-      authToken = null;
-      return;
-    }
-
-    $("welcomeModal").classList.add("hidden");
-
-    $("status").textContent =
-      "ورود موفق بود | سهمیه باقی‌مانده: " +
-      currentQuota.remaining + " از ۱۰";
-
-    const cleanUrl = new URL(location.href);
-    cleanUrl.searchParams.delete("auth_code");
-    history.replaceState({}, "", cleanUrl);
-
-  } catch (error) {
-    $("loginStatus").textContent = error.message;
-    authToken = null;
-  }
-}
-
-$("telegramLoginBtn").addEventListener("click", () => {
-  location.href = AUTH_API + "/auth/login";
-});
-
-const loginParams = new URLSearchParams(location.search);
-const returnedCode = loginParams.get("auth_code");
-
-if (returnedCode) {
-  finishTelegramLogin(returnedCode);
-}
-  
 let availableCountries = new Set();
 let countrySubscriptions = new Map();
 let selectedCountry = "";
@@ -1987,41 +1895,12 @@ function closeCountryMenu() {
    ENDPOINT SCAN AND SUBSCRIPTION COPY
 ========================= */
 
-async function startEndpointScan() {
+function startEndpointScan() {
   if (!selectedCountry || !countrySubscriptions.has(selectedCountry)) {
     setStatus("ابتدا یک لوکیشن معتبر انتخاب کنید.", true);
     return;
   }
-  if (!authToken) {
-  $("welcomeModal").classList.remove("hidden");
-  return;
-}
 
-try {
-  const quotaResponse = await fetch(AUTH_API + "/api/use", {
-    method: "POST",
-    headers: {
-      "Authorization": "Bearer " + authToken
-    }
-  });
-
-  const quotaData = await quotaResponse.json();
-
-  if (!quotaResponse.ok) {
-    setStatus("سهمیه روزانه شما تمام شده است.", true);
-    return;
-  }
-
-  currentQuota.used = quotaData.used;
-  currentQuota.remaining = quotaData.remaining;
-
-  if (quotaData.warning) alert(quotaData.warning);
-
-} catch (error) {
-  setStatus("ارتباط با سرور برقرار نشد.", true);
-  return;
-}
-  
   clearTimeout(endpointTimer);
   $("scanEndpointBtn").disabled = true;
   $("endpointModalIcon").className = "apn-loader";
@@ -2342,40 +2221,6 @@ function startTrafficDisplay() {
 initExtraOptions();
 loadPublicIP();
 startTrafficDisplay();
-
-/* Background music: autoplay when allowed; otherwise start after first user interaction. */
-const backgroundMusic = $("backgroundMusic");
-const musicToggle = $("musicToggle");
-let musicMuted = false;
-backgroundMusic.volume = 0.35;
-
-function updateMusicButton() {
-  musicToggle.textContent = musicMuted ? "🔇" : "🔊";
-  musicToggle.setAttribute("aria-label", musicMuted ? "وصل صدا" : "قطع صدا");
-  musicToggle.setAttribute("aria-pressed", String(musicMuted));
-  musicToggle.title = musicMuted ? "Unmute" : "Mute";
-}
-
-function tryStartMusic() {
-  if (musicMuted || !backgroundMusic.paused) return;
-  const playAttempt = backgroundMusic.play();
-  if (playAttempt && typeof playAttempt.catch === "function") {
-    playAttempt.catch(() => { /* Browser may require a user gesture. */ });
-  }
-}
-
-musicToggle.addEventListener("click", () => {
-  musicMuted = !musicMuted;
-  backgroundMusic.muted = musicMuted;
-  updateMusicButton();
-  if (!musicMuted) tryStartMusic();
-});
-
-["pointerdown", "keydown", "touchstart"].forEach(eventName => {
-  document.addEventListener(eventName, tryStartMusic, { once: true, passive: true });
-});
-updateMusicButton();
-tryStartMusic();
 
 setDatabaseCardsDisabled(false);
 </script>
