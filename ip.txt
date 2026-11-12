@@ -1,31 +1,18 @@
 {ae} https://sky-pixel-295.gumepe3734.workers.dev/sync?sub=AE#@DarkVPNTG
 {al} https://sky-pixel-295.gumepe3734.workers.dev/sync?sub=AL#DarkVPNTG
-{at} https://sky-pixel-295.gumepe3734.workers.dev/sync?sub=AT#@DarkVPNTG
-{au} https://sky-pixel-295.gumepe3734.workers.dev/sync?sub=AU#@DarkVPNTG
 {be} https://sky-pixel-295.gumepe3734.workers.dev/sync?sub=BE#@DarkVPNTG
-{br} https://sky-pixel-295.gumepe3734.workers.dev/sync?sub=BR#@DarkVPNTG
-{ca} https://sky-pixel-295.gumepe3734.workers.dev/sync?sub=CA#@DarkVPNTG
 {ch} https://sky-pixel-295.gumepe3734.workers.dev/sync?sub=CH#@DarkVPNTG
 {cz} https://sky-pixel-295.gumepe3734.workers.dev/sync?sub=CZ#@DarkVPNTG
 {de} https://sky-pixel-295.gumepe3734.workers.dev/sync?sub=DE#@DarkVPNTG
-{dk} https://sky-pixel-295.gumepe3734.workers.dev/sync?sub=DK#@DarkVPNTG
-{es} https://sky-pixel-295.gumepe3734.workers.dev/sync?sub=ES#@DarkVPNTG
 {fi} https://sky-pixel-295.gumepe3734.workers.dev/sync?sub=FI#@DarkVPNTG
 {fr} https://sky-pixel-295.gumepe3734.workers.dev/sync?sub=FR#@DarkVPNTG
 {gb} https://sky-pixel-295.gumepe3734.workers.dev/sync?sub=GB#@DarkVPNTG
-{id} https://sky-pixel-295.gumepe3734.workers.dev/sync?sub=ID#@DarkVPNTG
-{ie} https://sky-pixel-295.gumepe3734.workers.dev/sync?sub=IE#@DarkVPNTG
-{in} https://sky-pixel-295.gumepe3734.workers.dev/sync?sub=IN#@DarkVPNTG
-{it} https://sky-pixel-295.gumepe3734.workers.dev/sync?sub=IT#@DarkVPNTG
 {jp} https://sky-pixel-295.gumepe3734.workers.dev/sync?sub=JP#@DarkVPNTG
-{kr} https://sky-pixel-295.gumepe3734.workers.dev/sync?sub=KR#@DarkVPNTG
-{lt} https://sky-pixel-295.gumepe3734.workers.dev/sync?sub=LT#@DarkVPNTG
 {nl} https://sky-pixel-295.gumepe3734.workers.dev/sync?sub=NL#@DarkVPNTG
-{no} https://sky-pixel-295.gumepe3734.workers.dev/sync?sub=NO#@DarkVPNTG
 {pl} https://sky-pixel-295.gumepe3734.workers.dev/sync?sub=PL#@DarkVPNTG
-{ro} https://sky-pixel-295.gumepe3734.workers.dev/sync?sub=RO#@DarkVPNTG
 {rs} https://sky-pixel-295.gumepe3734.workers.dev/sync?sub=RS#@DarkVPNTG
 {se} https://sky-pixel-295.gumepe3734.workers.dev/sync?sub=SE#@DarkVPNTG
 {tr} https://sky-pixel-295.gumepe3734.workers.dev/sync?sub=TR#DarkVPNTG
-{sg} https://sky-pixel-295.gumepe3734.workers.dev/sync?sub=SG#@DarkVPNTG
 {us} https://sky-pixel-295.gumepe3734.workers.dev/sync?sub=US#@DarkVPNTG
+{ru} 
+{lv}
